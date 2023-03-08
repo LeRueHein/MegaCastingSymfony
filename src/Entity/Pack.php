@@ -6,20 +6,23 @@ use App\Repository\PackRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PackRepository::class)]
+#[ORM\Table(name: "Pack")]
 class Pack
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'Identifiant')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Libel')]
     private ?string $libel = null;
 
-    #[ORM\Column]
+
+    #[ORM\Column(name: 'NombreOffre')]
     private ?int $nombreOffre = null;
 
-    #[ORM\Column]
+
+    #[ORM\Column(name: 'Tarif')]
     private ?int $tarif = null;
 
     public function getId(): ?int

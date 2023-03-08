@@ -8,32 +8,35 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
+#[ORM\Table(name: "Client")]
 class Client
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'Identifiant')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Nom')]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Ville')]
     private ?string $ville = null;
 
-    #[ORM\Column]
+
+    #[ORM\Column(name: 'Telephone')]
     private ?int $telephone = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Email')]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Login')]
     private ?string $login = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Password')]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: OffreCasting::class)]
+    #[ORM\Column(name: 'OffreCastings')]
     private Collection $offreCastings;
 
     public function __construct()

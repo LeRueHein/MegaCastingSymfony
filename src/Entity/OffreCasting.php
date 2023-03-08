@@ -9,41 +9,52 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OffreCastingRepository::class)]
+#[ORM\Table(name: "OffreCasting")]
 class OffreCasting
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'Identifiant')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Libel')]
     private ?string $libel = null;
 
-    #[ORM\Column(length: 3000)]
+    #[ORM\Column(length: 3000, name: 'Reference')]
     private ?string $reference = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, name: 'ParutionDateTime')]
     private ?\DateTimeInterface $parutionDateTime = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, name: 'OffreDateStart')]
     private ?\DateTimeInterface $offreDateStart = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, name: 'OffreDateEnd')]
     private ?\DateTimeInterface $offreDateEnd = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Localisation')]
     private ?string $localisation = null;
 
+
+    #[ORM\JoinTable(name: 'CiviliteOffreCasting')]
+    #[ORM\JoinColumn(name: 'IdentifiantCivilite', referencedColumnName: 'Identifiant')]
+    #[ORM\InverseJoinColumn(name: 'IdentifiantOffreCasting', referencedColumnName: 'Identifiant')]
     #[ORM\ManyToMany(targetEntity: Civilite::class, inversedBy: 'offreCastings')]
     private Collection $civilite;
 
-    #[ORM\ManyToOne(inversedBy: 'offreCastings')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'offreCastings')]
+    #[ORM\JoinColumn(name: 'IdentifiantClient', referencedColumnName: 'Identifiant', nullable: false)]
     private ?Client $client = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreCastings')]
+    #[ORM\ManyToOne(targetEntity: TypeContrat::class, inversedBy: 'offreCastings')]
+    #[ORM\JoinColumn(name: 'IdentifiantTypeContrat', referencedColumnName: 'Identifiant', nullable: false)]
     private ?TypeContrat $typecontrat = null;
 
+
+
+    #[ORM\JoinTable(name: 'MetierOffreCasting')]
+    #[ORM\JoinColumn(name: 'IdentifiantMetier', referencedColumnName: 'Identifiant')]
+    #[ORM\InverseJoinColumn(name: 'IdentifiantOffreCasting', referencedColumnName: 'Identifiant')]
     #[ORM\ManyToMany(targetEntity: Metier::class, inversedBy: 'offreCastings')]
     private Collection $metier;
 

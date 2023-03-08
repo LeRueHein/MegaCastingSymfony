@@ -8,14 +8,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TypeContratRepository::class)]
+#[ORM\Table(name: "TypeContrat")]
 class TypeContrat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'Identifiant')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Libel')]
     private ?string $libel = null;
 
     #[ORM\OneToMany(mappedBy: 'typecontrat', targetEntity: OffreCasting::class)]

@@ -6,17 +6,18 @@ use App\Repository\PartenaireDiffusionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PartenaireDiffusionRepository::class)]
+#[ORM\Table(name: "PartenaireDiffusion")]
 class PartenaireDiffusion
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'Identifiant')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Login')]
     private ?string $login = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, name: 'Password')]
     private ?string $password = null;
 
     public function getId(): ?int
