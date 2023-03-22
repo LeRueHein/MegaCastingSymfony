@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div>
+
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="">MegaCasting</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('app_offer', {'id': 'x'}) }}">Offres <span class="sr-only"></span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">Profil <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">Deconnexion <span class="sr-only"></span></a>
+                    </li>
+
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+
+{#        barre de recherche#}
+{#        <nav class="navbar navbar-light bg-light">#}
+{#            <form class="form-inline">#}
+{#                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
+{#                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#            </form>#}
+{#        </nav>#}
+
+        <div class="container">
+        <div class="row">
+        <table class="table-bordered"><br>
+            <h1 class="">Offre de casting</h1>
+
+            {% for offer in offers %}
+
+
+                   <a class="col-sm" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.libel }}</a><br>
+
+
+            </div>
+
+
+
+
+
+</div>
+</div>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -36,7 +36,6 @@ class Client
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: OffreCasting::class)]
-    #[ORM\Column(name: 'OffreCastings')]
     private Collection $offreCastings;
 
     public function __construct()
@@ -149,5 +148,9 @@ class Client
         }
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->nom;
     }
 }

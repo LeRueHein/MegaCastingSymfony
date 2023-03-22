@@ -86,4 +86,8 @@ class Civilite
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->libelLong;
+    }
 }
