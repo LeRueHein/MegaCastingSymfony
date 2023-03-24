@@ -39,6 +39,19 @@ class OffreCastingRepository extends ServiceEntityRepository
         }
     }
 
+    public function findSearch($query){
+        return $this->createQueryBuilder('r')
+            ->where('r.libel LIKE :query')
+            //->orWhere('r.reference LIKE :query')
+            //->orWhere('r.offreDateStart LIKE :query')
+            //->orWhere('r.typecontrat LIKE :query')
+            //->orWhere('r.civilite LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            //->join('c.categories', 'cat')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return OffreCasting[] Returns an array of OffreCasting objects
 //     */

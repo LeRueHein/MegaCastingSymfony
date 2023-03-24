@@ -4,6 +4,10 @@
 
 {% block body %}
     <div>
+
+
+
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="">MegaCasting</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +35,7 @@
         </nav>
 
 
-                {#        barre de recherche#}
+{#        barre de recherche#}
         <nav class="navbar navbar-light bg-light">
             <form class="d-flex" role="search" action="{{ path("app_search") }}">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
@@ -46,22 +50,27 @@
             <br>
             <br>
 
-                {% for offer in offers %}
-                    <div class="card" style="width: 18rem;">
+            {% for offer in offers %}
+            <div class="card" style="width: 18rem;">
 
 
-                    <div class="card-body me-1" >
-                        <h5 class="card-title"><h1 class="col-sm" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.libel }}</h1><br></h5>
-                        <p class="card-title" >Date de début :</p>
-                        <p class="card-title" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.parutionDateTime | date('d / m / y')}}</p>
-                        <a href="" class="btn btn-primary">Postulez</a>
-                      </div>
-                    </div>
-
-        </div>
+  <div class="card-body me-1" >
+    <h5 class="card-title"><h1 class="col-sm" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.libel }}</h1><br></h5>
+    <p class="card-title" >Date de début :</p>
+    <p class="card-title" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.parutionDateTime | date('d / m / y')}}</p>
+    <a href="" class="btn btn-primary">Postulez</a>
+  </div>
 </div>
 
-                {% endfor %}
+</div>
+
+
+
+
+
+</div>
+</div>
+            {% endfor %}
         </table>
     </div>
 {% endblock %}

@@ -14,16 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class OfferController extends AbstractController
 {
     #[Route('/offer/{id}', name: 'app_offer')]
-    public function index($id, EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        $offer = $entityManager->getRepository(OffreCasting::class)->find($id);
-        return $this->render('offer/new.html.twig', [
+        $offer = $entityManager->getRepository(OffreCasting::class)->findAll();
+        return $this->render('offer/index.html.twig', [
             'offers' => $offer
 
 
         ]);
     }
-    #[Route('/offer/{id}', name: 'app_offer')]
+    #[Route('jyjyjygjygjygjygjyg/ygyg', name: 'app_offer2')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
@@ -46,5 +46,7 @@ class OfferController extends AbstractController
         return $this->render('offer/index.html.twig', [
             'form' => $form,
         ]);
+
+
 
 }}
