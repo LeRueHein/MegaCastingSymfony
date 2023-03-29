@@ -45,6 +45,10 @@ class AppFixtures extends Fixture
         $offer->setClient($client);
         $offer->setTypecontrat($typeContrat);
 
+
+
+
+
         $domaineMetier = new DomaineMetier();
         $domaineMetier->setLibel("hoho");
         $domaineMetier->setDescription("fzfdzf");

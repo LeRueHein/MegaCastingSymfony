@@ -3,30 +3,28 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+<body class="pageHome">
     <div>
+    <nav class="navbar navbar-expand-lg navbar-dark navigation">
 
-
-
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="">MegaCasting</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_offer', {'id': 'x'}) }}">Offres <span class="sr-only"></span></a>
+                        <a class="nav-link" href="{{ path('app_home') }}">Offres <span class="sr-only"></span></a>
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Profil <span class="sr-only"></span></a>
+                        <a class="nav-link" href="{{ path('app_register') }}">Inscription <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion <span class="sr-only"></span></a>
+                        <a class="nav-link"  href="{{ path('app_logout') }}">Deconnexion <span class="sr-only"></span></a>
                     </li>
-
 
 
                 </ul>
@@ -35,42 +33,34 @@
         </nav>
 
 
+
+
 {#        barre de recherche#}
-        <nav class="navbar navbar-light bg-light">
-            <form class="d-flex" role="search" action="{{ path("app_search") }}">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
-                    <button class="btn btn-outline-success" type="submit">Recherche</button>
-                </form>
-        </nav>
+        <form class="d-flex justify-content-end mt-5 me-5" role="search" action="{{ path("app_search") }}">
+                <input class="form-control me-2" style="width:200px" placeholder="Recherche" aria-label="Search" name="query">
+                <button class="btn btn-outline-success" type="submit">Recherche</button>
+            </form>
 
         <div class="container">
         <div class="row">
         <table class="table-bordered"><br>
-            <h1 class="offrecasting"> Offre de casting</h1><br>
+            <h1 class="couleurtext mb-5 mt-4"> Offre de casting</h1><br>
             <br>
             <br>
 
             {% for offer in offers %}
-            <div class="card" style="width: 18rem;">
+                <div class="backgroundcarte ms-4 mb-4" style="width: 18rem;">
 
 
-  <div class="card-body me-1" >
-    <h5 class="card-title"><h1 class="col-sm" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.libel }}</h1><br></h5>
-    <p class="card-title" >Date de début :</p>
-    <p class="card-title" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.parutionDateTime | date('d / m / y')}}</p>
-    <a href="" class="btn btn-primary">Postulez</a>
-  </div>
-</div>
-
-</div>
-
-
-
-
-
-</div>
-</div>
+                    <div class="card-body me-1">
+                        <h1 class="col-sm textcard mt-3 text-truncate" href="{{ path('app_offer', {'id': offer.id}) }}" class="libel">{{ offer.libel }}</h1>
+                        <br>
+                        <p class="card-title ">Date de début</p>
+                        <p class="card-title" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.parutionDateTime | date('d / m / y') }}</p>
+                        <a href="{{ path('app_offer', {'id': offer.id}) }}" class="btn btn-primary fw-bold mb-4">OFFRES</a>
+                    </div>
+                </div>
             {% endfor %}
         </table>
-    </div>
+    </body>
 {% endblock %}

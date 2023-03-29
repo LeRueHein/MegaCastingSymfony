@@ -2,6 +2,70 @@ body {
     background-color: blue;
 }
 
-.offrecasting {
+.couleurtext {
     text-align: center;
+    color: white;
 }
+.couleurtext2{
+    color: white;
+}
+.positionrecherche{
+    left: 500px;
+    width: 100%;
+
+}
+
+.textcard{
+    font-size: 20px;
+}
+
+.textboutoncard{
+
+    background-color: #7332be;
+}
+.barredubas{
+    background-color: rebeccapurple;
+}
+
+.taillecherche {
+
+    right: 500px;
+
+    width: 50px;
+}
+
+.pageHome{
+    background-image: url("../image/megacastingbackground.jpg");
+    background-size: cover;
+
+
+
+}
+
+.navigation{
+
+    background-image: url("../image/navbarback.PNG");
+    background-size: cover;
+    height: 70px;
+
+}
+
+.navbartext{
+
+    color: white;
+}
+
+.backgroundcarte{
+    background-color: #ad1ec7;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    background-image: url("../image/cardback.PNG");
+    background-size: cover;
+
+}
+.libel{
+    font-size: 14px;
+}
+
+

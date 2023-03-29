@@ -11,18 +11,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class OfferController extends AbstractController
 {
+
     #[Route('/offer/{id}', name: 'app_offer')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager, int $id): Response
     {
-        $offer = $entityManager->getRepository(OffreCasting::class)->findAll();
+        $offer = $entityManager->getRepository(OffreCasting::class)->find($id);
         return $this->render('offer/index.html.twig', [
             'offers' => $offer
 
 
         ]);
     }
+
     #[Route('jyjyjygjygjygjygjyg/ygyg', name: 'app_offer2')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -30,11 +33,11 @@ class OfferController extends AbstractController
         $offre = new OffreCasting();
 
 
-        $form = $this->createForm(OffreCastingType::class, $offre );
+        $form = $this->createForm(OffreCastingType::class, $offre);
 
         $form = $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if ($form->isSubmitted()) {
 
             $offre = $form->GetData();
             $entityManager->persist($offre);
@@ -48,5 +51,6 @@ class OfferController extends AbstractController
         ]);
 
 
+    }
 
-}}
+}

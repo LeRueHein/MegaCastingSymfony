@@ -3,53 +3,78 @@
 {% block title %}Hello OfferController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: red; padding: 2px 6px; }
 
-</style>
-    <h1>Données</h1>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: red;
+            padding: 2px 6px;
+        }
+
+    </style>
+<body class="pageHome">
+    <div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark navigation">
+
+            <a class="navbar-brand" href="">MegaCasting</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('app_home') }}">Offres <span class="sr-only"></span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('app_register') }}">Inscription <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link"  href="{{ path('app_logout') }}">Deconnexion <span class="sr-only"></span></a>
+                    </li>
 
 
-<div>
+                </ul>
 
+            </div>
+        </nav>
+    </div>
 
-
-    <table class="table">
-        <thead>
+    <div>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Label</th>
-            <th scope="col">Description</th>
-            <th scope="col">Localisation</th>
-            <th scope="col">Date de parution</th>
-            <th scope="col">Date de début</th>
-            <th scope="col">Date de fin</th>
-
+            <th scope="col">Label :</th>
+            <td> {{ offers.libel }}</td>
+            <br>
+            <th scope="col">Description :</th>
+            <td> {{ offers.reference }}</td>
+            <br>
+            <th scope="col">Localisation :</th>
+            <td> {{ offers.localisation }}</td>
+            <br>
+            <th scope="col">Date de parution :</th>
+            <td> {{ offers.parutionDateTime | date('d / m / y') }}</td>
+            <br>
+            <th scope="col">Date de début :</th>
+            <td> {{ offers.OffreDateStart | date('d / m / y') }}</td>
+            <br>
+            <th scope="col">Date de fin :</th>
+            <td>{{ offers.OffreDateEnd | date('d / m / y') }}</td>
+            <br>
         </tr>
-        </thead>
-        <tbody>
-    {% for offer in offers %}
-        <tr>
-            <th scope="row">1</th>
-            <td>{{ offer.libel }}</td>
-            <td>{{ offer.reference }}</td>
-            <td>{{ offer.localisation }}</td>
-            <td>{{ offer.parutionDateTime | date('d / m / y')}}</td>
-            <td>{{ offer.OffreDateStart | date('d / m / y')}}</td>
-            <td>{{ offer.OffreDateEnd | date('d / m / y')}}</td>
-        </tr>
-    {%  endfor  %}
-
-        </tbody>
-    </table>
 
 
-
-
-
-</table>
-</div>
-
+    </div>
+</body>
 {% endblock %}
+
+
 

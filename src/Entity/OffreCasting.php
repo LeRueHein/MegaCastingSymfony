@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: OffreCastingRepository::class)]
 #[ORM\Table(name: "OffreCasting")]
@@ -18,21 +19,27 @@ class OffreCasting
     private ?int $id = null;
 
     #[ORM\Column(length: 255, name: 'Libel')]
+    #[Groups('user')]
     private ?string $libel = null;
 
     #[ORM\Column(length: 3000, name: 'Reference')]
+    #[Groups('user')]
     private ?string $reference = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, name: 'ParutionDateTime')]
+    #[Groups('user')]
     private ?\DateTimeInterface $parutionDateTime = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, name: 'OffreDateStart')]
+    #[Groups('user')]
     private ?\DateTimeInterface $offreDateStart = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, name: 'OffreDateEnd')]
+    #[Groups('user')]
     private ?\DateTimeInterface $offreDateEnd = null;
 
     #[ORM\Column(length: 255, name: 'Localisation')]
+    #[Groups('user')]
     private ?string $localisation = null;
 
 

@@ -23,12 +23,12 @@ class HomeController extends AbstractController
         ]);
 
     }
+
     #[Route('/search/', name: 'app_search')]
-    public function search( EntityManagerInterface $manager, Request $request): Response
+    public function search(EntityManagerInterface $manager, Request $request): Response
     {
         $query = $request->get('query');
-        if ($query == "")
-        {
+        if ($query == "") {
             return $this->redirectToRoute('app_home');
 
 
