@@ -1,0 +1,48 @@
+<div class="mb-3">
+    <div class="d-flex flex-row justify-content-between">
+        <div class="yo d-inline-block ">
+
+            <button id="filter-button" class="btn mb-3 cherchefiltre1 text-white border-bottom border-top">
+                <b>FILTRER</b></button>
+            <div class="filter " id="filter-form">
+                {{ form_start(form) }}
+                <div class="row row-cols-auto">
+                    <div class="col text-white">
+                        <h5>Type de contrat</h5>
+                        {{ form_row(form.typecontrats) }}
+                    </div>
+                    <div class="col text-white">
+                        <h5>Métier</h5>
+                        {{ form_row(form.metiers) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
+            {#                    Script pour masquer/afficher les filtres avec animation #}
+
+            <script>
+                $(document).ready(function () {
+                    // Cacher les filtres au chargement
+                        $("#filter-form").hide();
+
+                    // Ajouter un bouton pour afficher/masquer les filtres avec animation
+                    $("#filter-button").click(function () {
+                        $("#filter-form").slideToggle(750);
+                    });
+                });
+            </script>
+        </div>
+        <div>
+            <form class="d-inline" role="search" action="{{ path("app_search") }}">
+                <input class="form-control me-2 d-inline-block" style="width:200px" placeholder="Recherche"
+                       aria-label="Search"
+                       name="query">
+                <button class="barrederecherches d-inline-block" type="submit">Recherche</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

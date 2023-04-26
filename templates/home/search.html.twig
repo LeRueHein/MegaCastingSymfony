@@ -3,64 +3,48 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<body class="pageHome">
+    <body class="pageHome">
     <div>
-    <nav class="navbar navbar-expand-lg navbar-dark navigation">
 
-            <a class="navbar-brand" href="">MegaCasting</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_home') }}">Offres <span class="sr-only"></span></a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_register') }}">Inscription <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link"  href="{{ path('app_logout') }}">Deconnexion <span class="sr-only"></span></a>
-                    </li>
-
-
-                </ul>
-
-            </div>
-        </nav>
-
-
-
-
-{#        barre de recherche#}
+        {#        barre de recherche #}
         <form class="d-flex justify-content-end mt-5 me-5" role="search" action="{{ path("app_search") }}">
-                <input class="form-control me-2" style="width:200px" placeholder="Recherche" aria-label="Search" name="query">
-                <button class="btn btn-outline-success" type="submit">Recherche</button>
-            </form>
+            <input class="form-control me-2" style="width:200px" placeholder="Recherche" aria-label="Search"
+                   name="query">
+            <button class="barrederecherches" type="submit">Recherche</button>
+        </form>
 
         <div class="container">
-        <div class="row">
-        <table class="table-bordered"><br>
-            <h1 class="couleurtext mb-5 mt-4"> Offre de casting</h1><br>
-            <br>
-            <br>
-
-            {% for offer in offers %}
-                <div class="backgroundcarte ms-4 mb-4" style="width: 18rem;">
+            <div class="row">
+                <table class="table-bordered"><br>
+                    <h1 class="logo-1"> Offre de casting</h1><br>
 
 
-                    <div class="card-body me-1">
-                        <h1 class="col-sm textcard mt-3 text-truncate" href="{{ path('app_offer', {'id': offer.id}) }}" class="libel">{{ offer.libel }}</h1>
-                        <br>
-                        <p class="card-title ">Date de début</p>
-                        <p class="card-title" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.parutionDateTime | date('d / m / y') }}</p>
-                        <a href="{{ path('app_offer', {'id': offer.id}) }}" class="btn btn-primary fw-bold mb-4">OFFRES</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </table>
+                    <br>
+                    <br>
+                    {% if offers|length > 0 %}
+                    {% for offer in offers %}
+                        <div class="backgroundcarte ms-4 mb-4" style="width: 18rem;">
+
+
+                            <div class="card-body me-1">
+                                <h1 class="col-sm textcard mt-3 text-truncate"
+                                    href="{{ path('app_offer', {'id': offer.id}) }}"
+                                    class="libel">{{ offer.libel }}</h1>
+                                <br>
+                                <p class="card-title ">Date de début</p>
+                                <p class="card-title"
+                                   href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.parutionDateTime | date('d / m / y') }}</p>
+                                <a href="{{ path('app_offer', {'id': offer.id}) }}"
+                                   class="btn btn-primary fw-bold mb-4">OFFRES</a>
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+                    {% else %}
+                        <div><p class="mt-5 text-white fw-bold">Aucune offres disponible pour cette recherche ! </p></div>
+                    {% endif %}
+
+                </table>
     </body>
 {% endblock %}

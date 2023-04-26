@@ -1,86 +1,44 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
 
-<body class="pageHome">
-
-    {# Barre de navigation #}
-    <div>
-
-        <nav class="navbar navbar-expand-lg navbar-dark navigation">
-
-            <a class="navbar-brand" href="">MegaCasting</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_home') }}">Offres <span class="sr-only"></span></a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_register') }}">Inscription <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link"  href="{{ path('app_logout') }}">Deconnexion <span class="sr-only"></span></a>
-                    </li>
+    <div class="container">
+        <div class="row">
+            <table class="table-bordered"><br>
+                <h1 class="logo-1 my-5"> OFFRE DE CASTING</h1><br>
 
 
-                </ul>
-
-            </div>
-        </nav>
+                {{ include('home/filtre.html.twig') }}
 
 
+                {% for offer in offers %}
 
-
-
-        {#        barre de recherche #}
-
-            <form class="d-flex justify-content-end mt-5 me-5" role="search" action="{{ path("app_search") }}">
-                <input class="form-control me-2" style="width:200px" placeholder="Recherche" aria-label="Search" name="query">
-                <button class="btn btn-outline-success" type="submit">Recherche</button>
-            </form>
-
-
-    <row>
-        <div class=" p-3 fixed-bottom barredubas" style="background-color: rgba(0, 0, 0, 0.2);">
-            <a class="text-white btn d-flex justify-content-end" href="">Contactez-nous</a>
-        </div>
-    </row>
-
-
-
-        <div class="container">
-            <div class="row">
-                <table class="table-bordered"><br>
-                    <h1 class="couleurtext mb-5 mt-4"> Offre de casting</h1><br>
-                    <br>
-                    <br>
-
-                    {% for offer in offers %}
-{#                    <div style="display: flex; flex-wrap:wrap">#}
-                    <div class="backgroundcarte ms-4 mb-4" style="width: 18rem;">
+                    {# <div style="display: flex; flex-wrap:wrap"> #}
+                    <div class="backgroundcarte ms-4 mb-4" style="width: 18rem;{{ offer.sponso == true ? 'filter: brightness(0.3)' : '' }}">
 
 
                         <div class="card-body me-1">
                             <h1 class="col-sm textcard mt-3 text-truncate" href="{{ path('app_offer', {'id': offer.id}) }}" class="libel">{{ offer.libel }}</h1>
-                                <br>
-                            <p class="card-title ">Date de début</p>
-                            <p class="card-title" href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.parutionDateTime | date('d / m / y') }}</p>
+                            <h5 href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.nivurgence }}</h5>
+                            <br>
+                            <p class="card-title "></p>
+                            <p class="card-title"
+                               href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.sponso }}</p>
                             <a href="{{ path('app_offer', {'id': offer.id}) }}" class="btn btn-primary fw-bold mb-4 mt-3">OFFRES</a>
                         </div>
                     </div>
 
-        {% endfor %}
+
+                {% endfor %}
+
+                {{ knp_pagination_render(offers) }}
+
+            </table>
+        </div>
 
     </div>
-
-</body>
 {% endblock %}
 

@@ -42,6 +42,14 @@ class OffreCasting
     #[Groups('user')]
     private ?string $localisation = null;
 
+    #[ORM\Column(nullable: true)]
+    #[Groups('user')]
+    private ?bool $Sponso = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('user')]
+    private ?string $Nivurgence = null;
+
 
     #[ORM\JoinTable(name: 'CiviliteOffreCasting')]
     #[ORM\JoinColumn(name: 'IdentifiantCivilite', referencedColumnName: 'Identifiant')]
@@ -64,6 +72,8 @@ class OffreCasting
     #[ORM\InverseJoinColumn(name: 'IdentifiantOffreCasting', referencedColumnName: 'Identifiant')]
     #[ORM\ManyToMany(targetEntity: Metier::class, inversedBy: 'offreCastings')]
     private Collection $metier;
+
+
 
     public function __construct()
     {
@@ -216,6 +226,30 @@ class OffreCasting
     public function removeMetier(Metier $metier): self
     {
         $this->metier->removeElement($metier);
+
+        return $this;
+    }
+
+    public function isSponso(): ?bool
+    {
+        return $this->Sponso;
+    }
+
+    public function setSponso(?bool $Sponso): self
+    {
+        $this->Sponso = $Sponso;
+
+        return $this;
+    }
+
+    public function getNivurgence(): ?string
+    {
+        return $this->Nivurgence;
+    }
+
+    public function setNivurgence(?string $Nivurgence): self
+    {
+        $this->Nivurgence = $Nivurgence;
 
         return $this;
     }

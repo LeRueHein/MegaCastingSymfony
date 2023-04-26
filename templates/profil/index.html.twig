@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper text-white">
+        <h1 class="mt-5 ">Votre profil :</h1><br>
+
+        <tr>
+            <th scope="col" class="font-weight-bold">NOM :</th>
+            <td> {{ app.user.nom }}</td>
+            <br>
+            <br>
+            <th scope="col">VILLE :</th>
+            <td> {{ app.user.ville }}</td>
+            <br>
+            <br>
+            <th scope="col">NUMERO TEL :</th>
+            <td> {{ app.user.numtel }}</td>
+            <br>
+            <br>
+            <th scope="col">EMAIL :</th>
+            <td> {{ app.user.email }}</td>
+            <br>
+        </tr>
+
+    </div>
+{% endblock %}

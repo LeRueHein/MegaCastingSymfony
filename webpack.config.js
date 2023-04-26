@@ -1,4 +1,7 @@
 const Encore = require('@symfony/webpack-encore');
+const { readdirSync } = require('fs');
+let files = readdirSync('./assets/image');
+
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -71,6 +74,12 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
 
-module.exports = Encore.getWebpackConfig();
+  .copyFiles({
+    from: './assets/image',
+    // optional target path, relative to the output dir
+    to: 'image/[path][name].[ext]',
+
+
+  });
+    module.exports = Encore.getWebpackConfig();

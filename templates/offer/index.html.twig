@@ -4,76 +4,65 @@
 
 {% block body %}
 
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
+    <div class="pageHome" style="color: white; padding: 50px 0;">
+        <div class="d-flex offredata container justify-content-center">
+            <h1 class="offredata2 logo-1 mb-4" style="text-align: center;">Information sur les offres</h1>
+        </div>
 
-        .example-wrapper code {
-            background: red;
-            padding: 2px 6px;
-        }
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="font-weight-bold">Label :</label>
+                    <br />
+                    <span style="margin-left: 10px;">{{ offers.libel }}</span>
+                </div>
 
-    </style>
-<body class="pageHome">
-    <div>
+                <div class="form-group">
+                    <label>Localisation :</label>
+                    <br />
+                    <span style="margin-left: 10px;">{{ offers.localisation }}</span>
+                </div>
 
-        <nav class="navbar navbar-expand-lg navbar-dark navigation">
+                <div class="form-group">
+                    <label>Date de parution :</label>
+                    <br />
+                    <span style="margin-left: 10px;">{{ offers.parutionDateTime | date('d / m / y') }}</span>
+                </div>
 
-            <a class="navbar-brand" href="">MegaCasting</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <div class="form-group">
+                    <label>Date de début :</label>
+                    <br />
+                    <span style="margin-left: 10px;">{{ offers.OffreDateStart | date('d / m / y') }}</span>
+                </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_home') }}">Offres <span class="sr-only"></span></a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('app_register') }}">Inscription <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link"  href="{{ path('app_logout') }}">Deconnexion <span class="sr-only"></span></a>
-                    </li>
-
-
-                </ul>
-
+                <div class="form-group">
+                    <label>Date de fin :</label>
+                    <br />
+                    <span style="margin-left: 10px;">{{ offers.OffreDateEnd | date('d / m / y') }}</span>
+                </div>
             </div>
-        </nav>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Niveau d'urgence :</label>
+                    <br />
+                    <span style="margin-left: 10px;">{{ offers.nivurgence }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Sponsorisation :</label>
+                    <br />
+                    <span style="margin-left: 10px;">{{ offers.sponso }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold">Description :</label>
+                    <br />
+                    <p style="margin-left: 10px;">{{ offers.reference }}</p>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <tr>
-            <th scope="col">Label :</th>
-            <td> {{ offers.libel }}</td>
-            <br>
-            <th scope="col">Description :</th>
-            <td> {{ offers.reference }}</td>
-            <br>
-            <th scope="col">Localisation :</th>
-            <td> {{ offers.localisation }}</td>
-            <br>
-            <th scope="col">Date de parution :</th>
-            <td> {{ offers.parutionDateTime | date('d / m / y') }}</td>
-            <br>
-            <th scope="col">Date de début :</th>
-            <td> {{ offers.OffreDateStart | date('d / m / y') }}</td>
-            <br>
-            <th scope="col">Date de fin :</th>
-            <td>{{ offers.OffreDateEnd | date('d / m / y') }}</td>
-            <br>
-        </tr>
-
-
-    </div>
-</body>
 {% endblock %}
 
 

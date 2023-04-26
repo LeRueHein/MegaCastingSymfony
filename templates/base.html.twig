@@ -1,19 +1,115 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="{{ asset('build/image/casting.jpg') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body class="pageHome">
+
+{# Barre de navigation #}
+<div id="page-container">
+    <div class="container-fluid p-0 pb-5">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navigation navbarcolor navbar-dark border-bottom">
+            <b class="navbar-brand" href="">MEGACASTING</b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <b><a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">OFFRES</a></b>
+                    </li>
+                    <li class="nav-item">
+                        <b><a class="nav-link active" aria-current="page" href="{{ path('app_pack') }}">PACKS</a></b>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 ">
+
+                    {# If pour afficher les onglets ou pas celon si l'utilisateur est connecté #}
+                    {% if app.user != null %}
+
+                        <li class="nav-item">
+                            <b><a class="nav-link active justify-content-end" href="{{ path('app_profil') }}">PROFIL</a></b>
+                        </li>
+                    {% endif %}
+
+                    {% if app.user == null %}
+                        <li class="nav-item">
+                            <b> <a class="nav-link active" href="{{ path('app_register') }}">S'ENREGISTRER</a></b>
+                        </li>
+                    {% endif %}
+
+
+                    {% if app.user == null %}
+                        <li class="nav-item">
+                            <b><a class="nav-link active" href="{{ path('app_login') }}">CONNEXION</a></b>
+                        </li>
+                    {% endif %}
+
+
+                    {% if app.user != null %}
+                        <li class="nav-item">
+                            <b> <a class="nav-link active justify-content-end" href="{{ path('app_logout') }}">DECONNEXION</a></b>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+
+    {% block body %}{% endblock %}
+    {#    footer #}
+
+    <div>
+        <footer class="bg-purple text-center text-white footer">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+
+                    <!-- Facebook -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                    ><i class="bi bi-facebook"></i></a>
+
+                    <!-- Twitter -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                    ><i class="bi bi-twitter"></i></a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/martin-trely-695600252/" role="button"
+                    ><i class="bi bi-linkedin"></i></a>
+
+
+                </section>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+                © 2023 Copyright:
+                <a class="text-white" href="#!">Martin TRELY</a>
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
 </html>
+
+
+
