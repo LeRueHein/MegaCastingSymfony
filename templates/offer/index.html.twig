@@ -9,56 +9,60 @@
             <h1 class="offredata2 logo-1 mb-4" style="text-align: center;">Information sur les offres</h1>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+        <div class="d-flex justify-content-center fs-4">
+            <div class="">
                 <div class="form-group">
-                    <label class="font-weight-bold">Label :</label>
-                    <br />
+                    <b class="">Label :</b>
                     <span style="margin-left: 10px;">{{ offers.libel }}</span>
                 </div>
 
                 <div class="form-group">
                     <label>Localisation :</label>
-                    <br />
                     <span style="margin-left: 10px;">{{ offers.localisation }}</span>
                 </div>
 
                 <div class="form-group">
                     <label>Date de parution :</label>
-                    <br />
                     <span style="margin-left: 10px;">{{ offers.parutionDateTime | date('d / m / y') }}</span>
                 </div>
 
                 <div class="form-group">
                     <label>Date de début :</label>
-                    <br />
                     <span style="margin-left: 10px;">{{ offers.OffreDateStart | date('d / m / y') }}</span>
                 </div>
 
                 <div class="form-group">
                     <label>Date de fin :</label>
-                    <br />
                     <span style="margin-left: 10px;">{{ offers.OffreDateEnd | date('d / m / y') }}</span>
                 </div>
-            </div>
-
-            <div class="col-md-6">
                 <div class="form-group">
-                    <label>Niveau d'urgence :</label>
-                    <br />
-                    <span style="margin-left: 10px;">{{ offers.nivurgence }}</span>
-                </div>
-
-                <div class="form-group">
-                    <label>Sponsorisation :</label>
-                    <br />
+                    <label>Sponsorisé :</label>
                     <span style="margin-left: 10px;">{{ offers.sponso }}</span>
                 </div>
 
                 <div class="form-group">
-                    <label class="font-weight-bold">Description :</label>
-                    <br />
-                    <p style="margin-left: 10px;">{{ offers.reference }}</p>
+                    <label>Niveau d'urgence :</label>
+                    <span style="margin-left: 10px;">
+                        {% if offers.nivurgence == 1 %}
+                            urgent
+                        {% endif %}
+
+                        {% if offers.nivurgence == 2 %}
+                            intermédiaire
+
+                        {% endif %}
+
+                        {% if offers.nivurgence == 3 %}
+                            non urgent
+
+                        {% endif %}
+
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label>Description :</label>
+                    <span style="margin-left: 10px;">{{ offers.reference }}</span>
                 </div>
             </div>
         </div>

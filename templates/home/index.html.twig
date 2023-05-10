@@ -16,17 +16,16 @@
 
                 {% for offer in offers %}
 
-                    {# <div style="display: flex; flex-wrap:wrap"> #}
-                    <div class="backgroundcarte ms-4 mb-4" style="width: 18rem;{{ offer.sponso == true ? 'filter: brightness(0.3)' : '' }}">
+
+                    <div class="backgroundcarte ms-4 mb-4" style="width: 18rem;">
 
 
                         <div class="card-body me-1">
-                            <h1 class="col-sm textcard mt-3 text-truncate" href="{{ path('app_offer', {'id': offer.id}) }}" class="libel">{{ offer.libel }}</h1>
-                            <h5 href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.nivurgence }}</h5>
+                            <h1 class="col-sm textcard mt-3 text-truncate" href="{{ path('app_offer', {'id': offer.id}) }}" class="libel">{{ offer.libel }}</h1><br>
+                            <h5 href="{{ path('app_offer', {'id': offer.id}) }}"><i class="bi-geo-alt"></i> : {{ offer.localisation }}</h5><br>
+                            <h6 href="{{ path('app_offer', {'id': offer.id}) }}"><i class="bi-calendar"></i> : {{ offer.parutionDateTime | date('d / m / y') }}</h6>
                             <br>
                             <p class="card-title "></p>
-                            <p class="card-title"
-                               href="{{ path('app_offer', {'id': offer.id}) }}">{{ offer.sponso }}</p>
                             <a href="{{ path('app_offer', {'id': offer.id}) }}" class="btn btn-primary fw-bold mb-4 mt-3">OFFRES</a>
                         </div>
                     </div>
