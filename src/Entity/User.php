@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -11,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface,  \Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -42,6 +45,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $ville = null;
 
+    #[ORM\ManyToMany(targetEntity: OffreCasting::class, mappedBy: 'Postule')]
+    private Collection $offreCastings;
+
+    public function __construct()
+    {
+        $this->offreCastings = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -158,6 +168,81 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVille(?string $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        // TODO: Implement __toString() method.
+    }
+
+    /**
+     * @return Collection<int, OffreCasting>
+     */
+
+    public function serialize()
+    {
+        // TODO: Implement serialize() method.
+    }
+
+    public function unserialize(string $data)
+    {
+        // TODO: Implement unserialize() method.
+    }
+
+    public function __serialize(): array
+    {
+
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'roles' => $this->roles,
+            'password' => $this->password,
+            'isVerified' => $this->isVerified,
+            'nom' => $this->nom,
+            'ville' => $this->ville,
+            'numtel' => $this->numtel,
+
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->id = $data['id'] ?? null;
+        $this->email = $data['email'] ?? null;
+        $this->roles = $data['roles'] ?? [];
+        $this->password = $data['password'] ?? null;
+        $this->isVerified = $data['isVerified'] ?? false;
+        $this->nom = $data['nom'] ?? null;
+        $this->numtel = $data['numtel'] ?? null;
+        $this->ville = $data['ville'] ?? null;
+
+    }
+
+    /**
+     * @return Collection<int, OffreCasting>
+     */
+    public function getOffreCastings(): Collection
+    {
+        return $this->offreCastings;
+    }
+
+    public function addOffreCasting(OffreCasting $offreCasting): self
+    {
+        if (!$this->offreCastings->contains($offreCasting)) {
+            $this->offreCastings->add($offreCasting);
+            $offreCasting->addPostule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffreCasting(OffreCasting $offreCasting): self
+    {
+        if ($this->offreCastings->removeElement($offreCasting)) {
+            $offreCasting->removePostule($this);
+        }
 
         return $this;
     }

@@ -73,12 +73,17 @@ class OffreCasting
     #[ORM\ManyToMany(targetEntity: Metier::class, inversedBy: 'offreCastings')]
     private Collection $metier;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'offreCastings')]
+    private Collection $Postule;
+
+
 
 
     public function __construct()
     {
         $this->civilite = new ArrayCollection();
         $this->metier = new ArrayCollection();
+        $this->Postule = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -253,4 +258,37 @@ class OffreCasting
 
         return $this;
     }
+
+    public function getPostuler(): ?string
+    {
+        return $this->Postuler;
+    }
+
+    public function setPostuler(string $Postuler): self
+    {
+        $this->Postuler = $Postuler;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+
+    public function addPostule(User $postule): self
+    {
+        if (!$this->Postule->contains($postule)) {
+            $this->Postule->add($postule);
+        }
+
+        return $this;
+    }
+
+    public function removePostule(User $postule): self
+    {
+        $this->Postule->removeElement($postule);
+
+        return $this;
+    }
+
 }

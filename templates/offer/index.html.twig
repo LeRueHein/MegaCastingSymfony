@@ -64,6 +64,24 @@
                     <label>Description :</label>
                     <span style="margin-left: 10px;">{{ offers.reference }}</span>
                 </div>
+
+
+                {{ form_start(form) }}
+
+
+                <div class="row">
+                    <div class="col">
+                        {{ form_row(form.candidat) }}
+                    </div>
+                    <div class="col" id="some-custom-id">
+                        {{ form_row(form.dueDate) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+                {% if app.user != null %}
+                    <a href="{{ path('app_offre_postule', {'id': offers.id }) }}"><button class="btn btn-dark mt-3" onclick="return confirm('Etes-vous sur de vouloir postuler pour cette offre ?')">Postuler</button></a>
+                {% endif %}
             </div>
         </div>
     </div>

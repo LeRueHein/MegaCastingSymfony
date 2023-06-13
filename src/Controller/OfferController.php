@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
 class OfferController extends AbstractController
@@ -51,6 +52,24 @@ class OfferController extends AbstractController
         ]);
 
 
+
+
+
+    }
+
+    #[Route('/offre/postule/{id}', name: 'app_offre_postule')]
+    public function postule(EntityManagerInterface $entityManager, INT $id, TokenStorageInterface $tokenStorage): Response
+    {
+
+        $user = $tokenStorage->getToken()->getUser();
+
+        $offre = $entityManager->getRepository(OffreCasting::class)->find($id);
+        $offre->addUser($user);
+        $entityManager->persist($offre);
+        $entityManager->flush();
+
+
+        return $this->redirectToRoute('app_home');
     }
 
 }
